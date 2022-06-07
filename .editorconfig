@@ -1,0 +1,16 @@
+# https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# 表示所有文件适用
+[*]
+charset = utf-8 # 文字字符集
+indent_style = space # 缩进风格
+indent_size = 2 # 缩进大小
+end_of_line = lf # 控制换行类型
+trim_trailing_whitespace = true # 去除行首的任意空白字符
+insert_final_newline = true # 始终在文件末尾插入新行
+
+[*.md] # 仅md文件适用以下规则
+trim_trailing_whitespace = false
