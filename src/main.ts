@@ -13,3 +13,5 @@ app.use(router)
 app.use(ElementPlus)
 
 app.mount('#app')
+
+console.log(process.env.VUE_APP_BASE_URL)
