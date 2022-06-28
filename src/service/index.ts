@@ -6,6 +6,10 @@ const request = new MyAxios({
   timeout: TIME_OUT,
   // interceptors: {
   //   requestInterceptor(config) {
+  //     const token = ''
+  //     if (token) {
+  //       config.headers.token = token
+  //     }
   //     console.log('实例自身的请求成功拦截器---', config)
   //     return config
   //   },

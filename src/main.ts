@@ -14,17 +14,26 @@ app.use(ElementPlus)
 
 app.mount('#app')
 
-request.request({
-  method: 'get',
-  url: '/home/multidata',
-  // interceptors: {
-  //   requestInterceptor(config) {
-  //     console.log('请求自身的请求拦截器')
-  //     return config
-  //   },
-  //   responseInterceptor(config) {
-  //     console.log('请求自身的响应拦截器')
-  //     return config
-  //   },
-  // },
-})
+interface IData {
+  returnCode: string
+  data: any
+}
+
+request
+  .get<IData>({
+    url: '/home/multidata',
+    showLoading: false,
+    // interceptors: {
+    //   requestInterceptor(config) {
+    //     console.log('请求自身的请求拦截器')
+    //     return config
+    //   },
+    //   responseInterceptor(res) {
+    //     console.log('请求自身的响应拦截器')
+    //     return res
+    //   },
+    // },
+  })
+  .then((res) => {
+    console.log(res.data)
+  })
