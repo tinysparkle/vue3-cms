@@ -36,7 +36,7 @@ class MyAxios {
             background: 'rgba(0, 0, 0, 0.5)',
           })
         }
-        console.log('全局请求拦截器')
+        // console.log('全局请求拦截器')
         return config
       },
       (err) => {
@@ -48,7 +48,7 @@ class MyAxios {
       (res) => {
         // 清除loading
         this.loading?.close()
-        console.log('全局响应拦截器')
+        // console.log('全局响应拦截器')
         return res.data
       },
       (err) => {
