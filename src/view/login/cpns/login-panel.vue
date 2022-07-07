@@ -8,6 +8,7 @@
       <el-tab-pane label="Sign Up" name="second">用户注册</el-tab-pane>
     </el-tabs>
 
+    <el-checkbox v-model="isKeepPsw">记住密码</el-checkbox>
     <el-button class="login-btn" type="primary" @click="handleLogin"
       >登陆</el-button
     >
@@ -20,6 +21,9 @@ import { ref } from 'vue'
 import LoginIn from './login-in.vue'
 
 const activeName = ref('first')
+
+const isKeepPsw = ref(true)
+
 const loginInRef = ref<InstanceType<typeof LoginIn>>()
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
@@ -27,7 +31,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 }
 
 const handleLogin = () => {
-  loginInRef.value?.loginAction()
+  loginInRef.value?.loginAction(isKeepPsw.value)
 }
 </script>
 

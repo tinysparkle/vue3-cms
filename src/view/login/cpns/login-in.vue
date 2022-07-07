@@ -10,7 +10,7 @@
       <el-input v-model="model.user" />
     </el-form-item>
     <el-form-item label="Password" prop="password">
-      <el-input v-model="model.password" />
+      <el-input v-model="model.password" show-password />
     </el-form-item>
   </el-form>
 </template>
@@ -19,17 +19,33 @@
 import { reactive, defineExpose, ref } from 'vue'
 import { rules } from '../config/login-config'
 import { ElForm } from 'element-plus'
+import LocalStorage from '@/utils/cache'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 const model = reactive({
-  user: '',
-  password: '',
+  user: LocalStorage.getCache('name') ?? '',
+  password: LocalStorage.getCache('password') ?? '',
 })
 
 const modelRef = ref<InstanceType<typeof ElForm>>()
 
-const loginAction = () => {
+const loginAction = (isKeepPsw: boolean) => {
   modelRef.value?.validate((valid) => {
-    if (!valid) return
+    if (valid) {
+      // 是否记住账号密码
+      if (isKeepPsw) {
+        LocalStorage.setCache('name', model.user)
+        localStorage.setItem('password', model.password)
+      } else {
+        LocalStorage.deleteCache('name')
+        LocalStorage.deleteCache('password')
+      }
+
+      // 登录操作
+      store.dispatch('login/accountLoginAction', { ...model })
+    }
   })
 }
 defineExpose({
