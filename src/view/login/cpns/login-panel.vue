@@ -3,7 +3,7 @@
     <h1>Login</h1>
     <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
       <el-tab-pane label="Sign In" name="first">
-        <LoginIn ref="loginInRef" />
+        <LoginAccount ref="loginInRef" />
       </el-tab-pane>
       <el-tab-pane label="Sign Up" name="second">用户注册</el-tab-pane>
     </el-tabs>
@@ -18,20 +18,20 @@
 <script setup lang="ts">
 import { TabsPaneContext } from 'element-plus/es/tokens/tabs'
 import { ref } from 'vue'
-import LoginIn from './login-in.vue'
+import LoginAccount from './login-account.vue'
 
 const activeName = ref('first')
 
 const isKeepPsw = ref(true)
 
-const loginInRef = ref<InstanceType<typeof LoginIn>>()
+const loginInRef = ref<InstanceType<typeof LoginAccount>>()
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
 }
 
 const handleLogin = () => {
-  loginInRef.value?.loginAction(isKeepPsw.value)
+  loginInRef.value?.loginAction(isKeepPsw.value, activeName.value)
 }
 </script>
 

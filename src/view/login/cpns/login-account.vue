@@ -31,7 +31,7 @@ const model = reactive({
 
 const modelRef = ref<InstanceType<typeof ElForm>>()
 
-const loginAction = (isKeepPsw: boolean) => {
+const loginAction = (isKeepPsw: boolean, tabName: string) => {
   modelRef.value?.validate((valid) => {
     if (valid) {
       // 是否记住账号密码
@@ -44,7 +44,11 @@ const loginAction = (isKeepPsw: boolean) => {
       }
 
       // 登录操作
-      store.dispatch('login/accountLoginAction', { ...model })
+      if (tabName === 'first') {
+        store.dispatch('login/accountLoginAction', { ...model })
+      } else {
+        console.log(111)
+      }
     }
   })
 }
